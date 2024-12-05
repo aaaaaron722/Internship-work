@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.springboot_vue.mapper.ArticleMapper">
+    <select id="list" resultType="org.springboot_vue.pojo.Article">
+        select * from article
+        <where>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+            and create_user = #{userId}
+        </where>
+        order by create_time desc
+    </select>
+    <update id="update">
+        update article
+        <set>
+            title = #{title},
+            content = #{content},
+            cover_img = #{coverImg},
+            state = #{state},
+            category_id = #{categoryId}
+        </set>
+        where id = #{id}
+    </update>
+    <select id="getArticleByKeyword" resultType="org.springboot_vue.pojo.Article">
+        SELECT *
+        FROM article
+        <where>
+            <if test="keyword != null and keyword != ''">
+                (
+                title LIKE CONCAT('%', #{keyword}, '%')
+                OR content LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+        </where>
+        AND create_user = #{userId}
+        order by create_time desc
+    </select>
+
+</mapper>
