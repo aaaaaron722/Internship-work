@@ -1,7 +1,7 @@
 ## Summer Vaction in SuZhou(China)
 <br>
 
-#### Describtion: 
+#### Description: 
 This is the recording for my summer vaction at July to August 2024. I work in 遠紡織染.
 
 The theme of this project is an article management system built using Vue and Java, including myBatis, mySQL and other technologies.
